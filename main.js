@@ -43,7 +43,6 @@ let option = "";
 
 // Creamos el Menu de Opcion
 
-while(option !== "ESC"){
     option = prompt("# Ingrese 1 para Mostrar los productos.\n # Ingrese 2 para Ingresar un nuevo productos.\n # Ingrese 3 para Buscar un Producto.\n")
 
     if(option !== ""){
@@ -82,11 +81,6 @@ while(option !== "ESC"){
                 break;        
         }
     }
-    else{
-        alert("Ingrese una opcion Valida! - Ingrese ESC si desea Salir!");
-        option = prompt("Ingrese ESC si desea salir");
-    }
-}
-
+  
 
 
