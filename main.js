@@ -41,43 +41,51 @@ cars.push(new Products({brand: "VOLKSWAGEN", model: "GOLF", year: 2022, price: 3
 
 let option = "";
 
-// Creamos el Menu de Opcion
+// Creamos el Menu de Opcion.
 
     option = prompt("# Ingrese 1 para Mostrar los productos.\n # Ingrese 2 para Ingresar un nuevo productos.\n # Ingrese 3 para Buscar un Producto.\n")
 
     if(option !== ""){
         switch(option){
+
             case "1":
-                let contenedor = document.getElementById("producte");   // Traemos el nodo que tiene el atributo product
-                cars.forEach(item => {                                  // Recorremos todo el Array compuesto por objetos
-                    let div = document.createElement("div");            // Creamos un div para introducir el listado de productos
+                let contenedor = document.getElementById("producte");   // Traemos el nodo que tiene el atributo product.
+                cars.forEach(item => {                                  // Recorremos todo el Array compuesto por objetos.
+                    let div = document.createElement("div");            // Creamos un div para introducir el listado de productos.
                     div.innerHTML = ` <h3> Marca: ${item.brand} </h3>   
                                     <p> Modelo: ${item.model} </p>      
-                                    <b> precio $${item.price} </b>`;   // introducimos en el HTML el listado de productos
-                    contenedor.append(div);                            // Insertamos todo en el div que se va creando anteriormente
+                                    <b> precio $${item.price} </b>`;   // introducimos en el HTML el listado de productos.
+                    contenedor.append(div);                            // Insertamos el contenido en la etiqueta div que se va creando anteriormente.
                 });
                 break;
             
             case "2":
-                let brandAdd = prompt("Ingrese la Marca");
+                let brandAdd = prompt("Ingrese la Marca");                // Ingresamos los datos por consola para añadir un nuevo producto.
                 let modelAdd = prompt("Ingrese el Modelo");
                 let yearAdd  = prompt("Ingrese Año");
                 let priceAdd = prompt("Ingrese Precio")
-                let stockAdd = prompt("Ingrese la cantidad de Stock")
+                let stockAdd = prompt("Ingrese la cantidad de Stock")      // En la siguiente linea Pusheamos el nuevo producto a nuestro listado.
                 cars.push(new Products({brand: `${brandAdd}`, model: `${modelAdd}`, year: `${yearAdd}`, price: `${priceAdd}`, stock: `${stockAdd}`, sold: false}));
+                
+                let contenedor2 = document.getElementById("producte");      // Traemos el nodo que tiene el atributo product.
+                cars.forEach(item2 => {                                     // Recorremos todo el Array con el nuevo producto.
+                    let div1 = document.createElement("div" && "p");        // Creamo la etiqueta div y p.
+                    div1.innerHTML = item2.showCars();                      // introducimos el listado en el HTML.
+                    contenedor2.append(div1);                               // Agregamos el contenido a la etiqueta div > p.
+                });
                 break;
-            
+
             case "3":
                 
-                let filters = document.getElementById("filter");
-                let findbrand = prompt("Ingrese la Marca a Buscar");
-                findbrand = findbrand.toUpperCase();          
-                const result = cars.filter(car => car.brand === findbrand);
+                let filters = document.getElementById("filter");            // Traemos el nodo que tiene el atributo filter.
+                let findbrand = prompt("Ingrese la Marca a Buscar");        // Ingresamos la marca que deseamos buscar.
+                findbrand = findbrand.toUpperCase();                        // Convertimos la entrada de texto a mayuscula.
+                const result = cars.filter(car => car.brand === findbrand); // Usamos el arrow f para buscar la marca.
 
-                result.forEach(item2 => {
-                    let p = document.createElement("p");
-                    p.innerHTML = item2.showCars();
-                    filters.append(p);    
+                result.forEach(item3 => {                                   // Recorremos el array que nos entrego la funcion anterior.
+                    let p = document.createElement("p");                    // Creamos el elemento parrafo.
+                    p.innerHTML = item3.showCars();                         // introducimos el listado en el HTML.
+                    filters.append(p);                                      // Agregamos el contenido a la etiqueta p.
                 });
                 break;
         
