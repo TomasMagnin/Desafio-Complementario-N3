@@ -16,7 +16,7 @@ class Products{
     }
 
     showCars(){
-        return `Brand: ${this.brand} - Modelo: ${this.model} - Año ${this.year} - $ ${this.price} - Stock ${this.stock} - Vendido ${this.sold}`
+        return `Brand: ${this.brand} - Modelo: ${this.model} - Año ${this.year} - $ ${this.price} - Stock ${this.stock} `
     }
 } 
 
@@ -25,15 +25,15 @@ class Products{
 
 let cars = [];
 
-cars.push(new Products({brand: "AUDI", model: "A3", year: 2015, price: 25000, stock: 4, sold: false}));
-cars.push(new Products({brand: "BMW", model: "M1", year: 2012, price: 55000, stock: 2,  sold: false}));
-cars.push(new Products({brand: "DODGE", model: "RAM", year: 2014, price: 65000, stock: 8, sold: false}));
-cars.push(new Products({brand: "FIAT", model: "CRONOS", year: 2020, price: 13000, stock: 20, sold: false}));
-cars.push(new Products({brand: "RENO", model: "OROCH", year: 2016, price: 15000, stock: 10, sold: false}));
-cars.push(new Products({brand: "FORD", model: "FOCUS", year: 2015, price: 10000, stock: 15, sold: false}));
-cars.push(new Products({brand: "CHEVROLET", model: "S10", year: 2010, price: 35000, stock: 6, sold: false}));
-cars.push(new Products({brand: "TOYOTA", model: "HILLUX", year: 2019, price: 45000, stock: 20, sold: false}));
-cars.push(new Products({brand: "VOLKSWAGEN", model: "GOLF", year: 2022, price: 30000, stock: 12, sold: false}));
+cars.push(new Products({brand: "AUDI", model: "A3", year: 2015, price: 25000, stock: 4,}));
+cars.push(new Products({brand: "BMW", model: "M1", year: 2012, price: 55000, stock: 2,}));
+cars.push(new Products({brand: "DODGE", model: "RAM", year: 2014, price: 65000, stock: 8,}));
+cars.push(new Products({brand: "FIAT", model: "CRONOS", year: 2020, price: 13000, stock: 20,}));
+cars.push(new Products({brand: "RENAULT", model: "OROCH", year: 2016, price: 15000, stock: 10,}));
+cars.push(new Products({brand: "FORD", model: "FOCUS", year: 2015, price: 10000, stock: 15}));
+cars.push(new Products({brand: "CHEVROLET", model: "S10", year: 2010, price: 35000, stock: 6}));
+cars.push(new Products({brand: "TOYOTA", model: "HILLUX", year: 2019, price: 45000, stock: 20}));
+cars.push(new Products({brand: "VOLKSWAGEN", model: "GOLF", year: 2022, price: 30000, stock: 12}));
 
 
 
@@ -48,14 +48,14 @@ let option = "";
     if(option !== ""){
         switch(option){
             case "1":
-                let contenedor = document.getElementById("producte"); // Traemos el nodo que tiene el atributo product
-                for(const item of cars){ // Recorremos todo el Array compuesto por objetos
-                    let div = document.createElement("div"); // Creamos un div para introducir el listado de productos
-                    div.innerHTML = ` <h3> ID: ${item.brand} </h3>
-                                    <p> nombre: ${item.model} </p>
-                                    <b> precio: ${item.price} </b>`; // introducimos en el HTML el listado de productos
-                    contenedor.append(div); // Insertamos todo en el div que se va creando anteriormente
-                };
+                let contenedor = document.getElementById("producte");   // Traemos el nodo que tiene el atributo product
+                cars.forEach(item => {                                  // Recorremos todo el Array compuesto por objetos
+                    let div = document.createElement("div");            // Creamos un div para introducir el listado de productos
+                    div.innerHTML = ` <h3> Marca: ${item.brand} </h3>   
+                                    <p> Modelo: ${item.model} </p>      
+                                    <b> precio $${item.price} </b>`;   // introducimos en el HTML el listado de productos
+                    contenedor.append(div);                            // Insertamos todo en el div que se va creando anteriormente
+                });
                 break;
             
             case "2":
@@ -68,12 +68,17 @@ let option = "";
                 break;
             
             case "3":
-                let fidbrd = prompt("Ingrese la Marca a Buscar");
-                fidbrd = fidbrd.toUpperCase();                
-                const result = cars.find(car => car.brand === fidbrd)
-                let result2 = []
-                result2 = result.showCars();
-                alert(result2);
+                
+                let filters = document.getElementById("filter");
+                let findbrand = prompt("Ingrese la Marca a Buscar");
+                findbrand = findbrand.toUpperCase();          
+                const result = cars.filter(car => car.brand === findbrand);
+
+                result.forEach(item2 => {
+                    let p = document.createElement("p");
+                    p.innerHTML = item2.showCars();
+                    filters.append(p);    
+                });
                 break;
         
             default:
