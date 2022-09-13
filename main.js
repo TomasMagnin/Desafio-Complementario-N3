@@ -60,8 +60,8 @@ let option = "";
                 break;
             
             case "2":
-                let brandAdd = prompt("Ingrese la Marca");                // Ingresamos los datos por consola para añadir un nuevo producto.
-                let modelAdd = prompt("Ingrese el Modelo");
+                let brandAdd = prompt("Ingrese la Marca").toUpperCase();                // Ingresamos los datos por consola para añadir un nuevo producto.
+                let modelAdd = prompt("Ingrese el Modelo").toUpperCase();
                 let yearAdd  = prompt("Ingrese Año");
                 let priceAdd = prompt("Ingrese Precio")
                 let stockAdd = prompt("Ingrese la cantidad de Stock")      // En la siguiente linea Pusheamos el nuevo producto a nuestro listado.
@@ -78,7 +78,7 @@ let option = "";
             case "3":
                 
                 let filters = document.getElementById("filter");            // Traemos el nodo que tiene el atributo filter.
-                let findbrand = prompt("Ingrese la Marca a Buscar");        // Ingresamos la marca que deseamos buscar.
+                let findbrand = prompt("Ingrese la Marca a Buscar, EJ: audi");        // Ingresamos la marca que deseamos buscar.
                 findbrand = findbrand.toUpperCase();                        // Convertimos la entrada de texto a mayuscula.
                 const result = cars.filter(car => car.brand === findbrand); // Usamos el arrow f para buscar la marca.
 
